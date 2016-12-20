@@ -34,6 +34,7 @@ class Rockman:
         self.frame = random.randint(0, 3)
         self.total_frames = 0.0
         self.dir = 0
+        self.height = 0
         self.state = self.RIGHT_STAND
         if self.image == None:
             self.image = load_image('Rockman.png')
