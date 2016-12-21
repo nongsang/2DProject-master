@@ -34,7 +34,7 @@ class Rockman:
         self.frame = random.randint(0, 3)
         self.total_frames = 0.0
         self.xdir = 0
-        self.ydir = 0
+        #self.ydir = 0
         self.state = self.RIGHT_STAND
         if self.image == None:
             self.image = load_image('Rockman.png')
@@ -44,35 +44,35 @@ class Rockman:
             if event.key == SDLK_RIGHT:                                                                         # 키 다운이고 오른쪽 화살표
                 if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.LEFT_RUN,):
                     self.state = self.RIGHT_RUN
-                    self.dir = 1
+                    self.xdir = 1
                 elif self.state in (self.RIGHT_STAND_SHOT, self.LEFT_STAND_SHOT, self.LEFT_RUN_SHOT,):
                     self.state = self.RIGHT_RUN_SHOT
-                    self.dir = 1
+                    self.xdir = 1
                 elif self.state in (self.RIGHT_JUMP, self.LEFT_JUMP, self.LEFT_JUMP_LEFT):
                     self.state = self.RIGHT_JUMP_RIGHT
-                    self.dir = 1
+                    self.xdir = 1
                 elif self.state in (self.LEFT_JUMP_SHOT,):
                     self.state = self.RIGHT_JUMP_SHOT
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.RIGHT_JUMP_SHOT, self.LEFT_JUMP_SHOT, self.LEFT_JUMP_SHOT_LEFT):
                     self.state = self.RIGHT_JUMP_SHOT_RIGHT
-                    self.dir = 1
+                    self.xdir = 1
             elif event.key == SDLK_LEFT:                                                                        # 키 다운이고 왼쪽 화살표
                 if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.RIGHT_RUN,):
                     self.state = self.LEFT_RUN
-                    self.dir = -1
+                    self.xdir = -1
                 elif self.state in (self.RIGHT_STAND_SHOT, self.LEFT_STAND_SHOT, self.RIGHT_RUN_SHOT,):
                     self.state = self.LEFT_RUN_SHOT
-                    self.dir = -1
+                    self.xdir = -1
                 elif self.state in (self.RIGHT_JUMP, self.LEFT_JUMP, self.RIGHT_JUMP_RIGHT):
                     self.state = self.LEFT_JUMP_LEFT
-                    self.dir = -1
+                    self.xdir = -1
                 elif self.state in (self.RIGHT_JUMP_SHOT,):
                     self.state = self.LEFT_JUMP_SHOT
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.RIGHT_JUMP_SHOT, self.LEFT_JUMP_SHOT, self.RIGHT_JUMP_SHOT_RIGHT):
                     self.state = self.LEFT_JUMP_SHOT_LEFT
-                    self.dir = -1
+                    self.xdir = -1
             elif event.key == SDLK_x:                                                                           # 키 다운이고 x키
                 if self.state in (self.RIGHT_STAND,):
                     self.state = self.RIGHT_STAND_SHOT
@@ -113,29 +113,29 @@ class Rockman:
             if event.key == SDLK_RIGHT:                                                                         # 키 업이고 오른쪽 화살표
                 if self.state in (self.RIGHT_RUN,):
                     self.state = self.RIGHT_STAND
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.RIGHT_RUN_SHOT,):
                     self.state = self.RIGHT_STAND_SHOT
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.RIGHT_JUMP_RIGHT,):
                     self.state = self.RIGHT_JUMP
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.RIGHT_JUMP_SHOT_RIGHT,):
                     self.state = self.RIGHT_JUMP_SHOT
-                    self.dir = 0
+                    self.xdir = 0
             elif event.key == SDLK_LEFT:                                                                        # 키 업이고 왼쪽 화살표
                 if self.state in (self.LEFT_RUN,):
                     self.state = self.LEFT_STAND
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.LEFT_RUN_SHOT,):
                     self.state = self.LEFT_STAND_SHOT
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.LEFT_JUMP_LEFT,):
                     self.state = self.LEFT_JUMP
-                    self.dir = 0
+                    self.xdir = 0
                 elif self.state in (self.LEFT_JUMP_SHOT_LEFT,):
                     self.state = self.LEFT_JUMP_SHOT
-                    self.dir = 0
+                    self.xdir = 0
             elif event.key == SDLK_x:                                                                           # 키 업이고 x키
                 if self.state in (self.RIGHT_STAND_SHOT,):
                     self.state = self.RIGHT_STAND
@@ -184,7 +184,7 @@ class Rockman:
         distance = Rockman.RUN_SPEED_PPS * frame_time
         self.total_frames += rockman.FRAMES_PER_ACTION * rockman.ACTION_PER_TIME * frame_time
         self.frame = int(self.total_frames) % 4
-        self.x += (self.dir * distance)
+        self.x += (self.xdir * distance)
 
         self.x = clamp(40, self.x, 662)
 
