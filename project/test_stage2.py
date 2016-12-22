@@ -4,7 +4,7 @@ import game_framework
 import ending
 
 
-from test_rockman import Boy # import Boy class from boy.py
+from test_rockman import Rockman # import Boy class from boy.py
 from test_niddle import Niddle
 from test_goal import Goal
 
@@ -21,7 +21,7 @@ goal = None
 def create_world():
     global boy, niddle, goal
 
-    boy = Boy()
+    boy = Rockman()
     niddle = Niddle()
     goal = Goal()
 
@@ -95,12 +95,6 @@ def draw(frame_time):
     clear_canvas()
     niddle.draw()
     boy.draw()
-
-
-
-    niddle.draw_bb()
-    boy.draw_bb()
-    goal.draw_bb()
 
 
     update_canvas()

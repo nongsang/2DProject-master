@@ -3,7 +3,7 @@ from pico2d import *
 import game_framework
 
 
-from test_rockman import Boy # import Boy class from boy.py
+from test_rockman import Rockman # import Boy class from boy.py
 from test_grass import Map
 from test_stairtop import Stairtop
 from test_stairside import Stairside
@@ -23,7 +23,7 @@ gotonextstage2 = None
 def create_world():
     global boy, map, stairtop, stairside, gotonextstage2
 
-    boy = Boy()
+    boy = Rockman()
     map = Map()
     stairtop = Stairtop()
     stairside = Stairside()
@@ -109,13 +109,6 @@ def draw(frame_time):
     map.draw()
     boy.draw()
 
-
-
-    map.draw_bb()
-    boy.draw_bb()
-    stairtop.draw_bb()
-    stairside.draw_bb()
-    gotonextstage2.draw_bb()
 
 
     update_canvas()
