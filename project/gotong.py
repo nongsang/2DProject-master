@@ -4,6 +4,14 @@ from pico2d import *
 running = None
 Rockman = None
 
+import game_framework
+import test_intro_state
+
+name = 'Gotong'
+
+rockman = None
+map = None
+
 class Map:
     def __init__(self):
         self.image = load_image('map.png')
@@ -194,6 +202,16 @@ class Rockman:
     def draw(self):
         self.image.clip_draw(self.frame*32, self.state * 30, 32, 30, self.x, self.y)
 
+
+def enter():
+    global rockman, map
+    rockman = Rockman()
+    map = Map()
+
+def exit():
+    global rockman, map
+    del(rockman)
+    del(map)
 
 
 
